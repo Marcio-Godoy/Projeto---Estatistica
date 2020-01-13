@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+  <head>
+    <link rel="shortcut icon" href="\favicon.ico" /> <!-- Colocando ícone favicon -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>O Estatístico</title>
+	<link rel="shortcut icon" href="img/favicon.ico" /> <!--Criando link para o favicon--!>
+    <script src="js-projeto/calculos.js"></script>
+	
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+	<!-- Arquivos do RangeSlider -->
+
+    <link rel="stylesheet" href="css/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
+	
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<script src="js/ion.rangeSlider.js"></script>
+	
+	
+    <link href="css-projeto/textarea.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+    <!-- Navigation -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <a class="navbar-brand" href="Index.html"><img src="img\imagem3.png"> O Estatístico</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+          <li class="nav-item active" data-toggle="tooltip" data-placement="right" title="Dashboard">
+            <a class="nav-link" href="index.html">
+              <i class="fa fa-fw fa-dashboard"></i>
+              <span class="nav-link-text">
+                Estatística Descritiva</span>
+            </a>
+          </li>
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+            <a class="nav-link" href="estIndutiva.html">
+              <i class="fa fa-fw fa-table"></i>
+              <span class="nav-link-text">
+                Estatística Indutiva</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+          <li class="nav-item">
+            <a class="nav-link text-center" id="sidenavToggler">
+              <i class="fa fa-fw fa-angle-left"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="content-wrapper">
+
+      <div class="container-fluid">
+
+        <!-- Breadcrumbs -->
+        <ol class="breadcrumb">
+          <h3 class="breadcrumb-item" id="inserirdados">
+            Insira os dados:
+          </h3>
+        </ol>
+		<p >Por favor digite os dados no campo abaixo:</p>
+        <!-- Text area Responsivo -->
+        <div class="span9" id="localDados">
+          <textarea id="dadosInseridos"></textarea><br /><br />
+        </div>
+
+        <!-- Icon Cards -->
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-primary o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-fw fa-comments"></i>
+                </div>
+                <div class="mr-5">
+                  <label>Processo Estatístico:<br />
+                      <input type="radio" name="proc_est" value="censo" checked="checked" onclick="habilitarErro()" /> Censo<br />
+                      <input type="radio"name="proc_est" value="estimacao" onclick="habilitarErro()" /> Estimação
+                  </label>
+                </div>
+              </div>
+              <div class="card-footer text-white clearfix small z-1">
+                  <span class="float-left">
+                    <p id="mErro">
+                    </p>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-warning o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-fw fa-list"></i>
+                </div>
+                <div class="mr-5" id="tec_amos">
+                  <p>Censo não tem técnica de amostragem!!!!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-success o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-fw fa-shopping-cart"></i>
+                </div>
+                <div class="mr-5">
+                  <label>Tipo de variável:<br />
+                      <input type="radio" name="var_pesq" value="qualOrdinal" checked="checked"/> Qual. Ordinal<br />
+                      <input type="radio"name="var_pesq" value="qualNominal" /> Qual. Nominal<br />
+                      <input type="radio"name="var_pesq" value="quantDiscreta" /> Quant. Discreta<br />
+                      <input type="radio"name="var_pesq" value="quantContinua" /> Quant. Contínua<br />
+                  </label>
+                </div>
+              </div>
+              <a href="#dicas" class="card-footer text-white clearfix small z-1" title="Clique aqui".>
+                <span class="float-left">Não sei escolher</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card text-white bg-danger o-hidden h-100">
+              <div class="card-body">
+                <div class="card-body-icon">
+                  <i class="fa fa-fw fa-support"></i>
+                </div>
+                <div class="mr-5">
+                  <input  type="button" id="processar" value="Calcular!!!" onclick="principal()" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example Tables Card -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fa fa-table"></i>
+            Tabela
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Xi</th>
+                    <th>fi</th>
+                    <th>fr%</th>
+                    <th>F</th>
+                    <th>F%</th>
+                    <!--<th>Outro</th>-->
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>Xi</th>
+                    <th>fi</th>
+                    <th>fr%</th>
+                    <th>F</th>
+                    <th>F%</th>
+                    <!--<th>Outro</th>-->
+                  </tr>
+                </tfoot>
+                <tbody id="corpoTabela">
+                  <tr>
+                    <td colspan="5" style="text-align:center; font-size:20px;">Não Há dados na Tabela!!!</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted">
+
+          </div>
+        </div>
+
+        <!-- Example Notifications Card -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fa fa-bell-o"></i>
+            Informações
+          </div>
+          <div class="list-group list-group-flush small">
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="media">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                <div class="media-body">
+                  <strong>Média:</strong>
+                  <div id="media"></div>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="media">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                <div class="media-body">
+                  <strong>Mediana:</strong>
+                  <div id="mediana"></div>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="media">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                <div class="media-body">
+                  <strong>Moda Convencional:</strong>
+                  <div id="modaConvencional"></div>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="media">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                <div class="media-body">
+                  <strong>Moda de Pearson</strong>
+                  <div id="mPearson"></div>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="media">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                <div class="media-body">
+                  <strong>Moda de King</strong>
+                  <div id="mKing"></div>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="media">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                <div class="media-body">
+                  <strong>Moda de Czuber</strong>
+                  <div id="mCzuber"></div>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="media">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                <div class="media-body">
+                  <strong>Desvio Padrão:</strong>
+                  <div id="dPadrao"></div>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="media">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                <div class="media-body">
+                  <strong>Coeficiente de Variança:</strong>
+                  <div id="cVar"></div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="card-footer small text-muted">
+
+          </div>
+        </div>
+		
+		<div>
+			<canvas class="grafProjeto" width="100%" height="30"></canvas>
+		</div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright &copy; O Estatístico 2017</small>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <!--<script src="vendor/datatables/jquery.dataTables.js"></script>-->
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/sb-admin.min.js"></script>
+	
+	
+	<script src="js-projeto/rangeSlider.js"></script>
+
+	
+  </body>
+</html>

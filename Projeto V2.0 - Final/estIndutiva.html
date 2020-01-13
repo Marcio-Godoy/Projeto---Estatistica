@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>O Estatístico</title>
+	<link rel="shortcut icon" href="img/favicon.ico" /> <!--Criando link para o favicon--!>
+
+	
+	<!--Range Slider arquivos -->
+	<link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
+	
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+	<!-- Arquivos do RangeSlider -->
+
+    <link rel="stylesheet" href="css/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
+	
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<script src="js/ion.rangeSlider.js"></script>
+
+	
+    <link href="css-projeto/textarea.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <a class="navbar-brand" href="Index.html"> <img src="img\imagem3.png"> O Estatístico</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+            <a class="nav-link" href="index.html">
+              <i class="fa fa-fw fa-dashboard"></i>
+              <span class="nav-link-text">
+                Estatística Descritiva</span>
+            </a>
+          </li>
+          <li class="nav-item active" data-toggle="tooltip" data-placement="right" title="Tables">
+            <a class="nav-link" href="estIndutiva.html">
+              <i class="fa fa-fw fa-table"></i>
+              <span class="nav-link-text">
+                Estatística Indutiva</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+          <li class="nav-item">
+            <a class="nav-link text-center" id="sidenavToggler">
+              <i class="fa fa-fw fa-angle-left"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="content-wrapper">
+		
+		<div class="card mb-3" >
+              <div class="card-body">
+                <h6 class="card-title mb-1">Distribuição Normal</h6>
+               
+              </div>
+              <hr class="my-0">
+              <div class="card-body py-2 small">
+				<form>
+					<p>Média:
+						<input  type="number" step="0.01" min="0" name="mediaDN" id="mediaDN" onchange="mostrarIntervalo()" />
+					</p>
+					<p>Desvio Padrão:
+						<input type="number" step="0.01" min="0" name="desviopadraoDN" id="desviopadraoDN" />
+					</p>
+					<p id="intervaloDN">
+					</p>
+					<input type="button" id="calcDN" value="Calcular" onclick="calcularDN()" />
+				</form>
+              </div>
+              <hr class="my-0">
+              <div class="card-body small bg-faded">
+                <div class="media">
+                  <div class="media-body">
+                    <h6 class="mt-0 mb-1">Probabilidade:</h6>
+                    <p id="probDN"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer small text-muted"></div>
+        </div>	
+	
+		<div class="card mb-3" >
+               <div class="card-body">
+                <h6 class="card-title mb-1">Intervalo de Confiança</h6>
+               
+              </div>
+              <hr class="my-0">
+              <div class="card-body py-2 small">
+				<form>
+					<p>População Infinita:
+						<input type="radio" value="popInfinita" name="tipoPopulacao" checked="checked" onclick="tipoPop()" />
+					</p>
+					<p>População Finita:
+						<input type="radio" value="popFinita" name="tipoPopulacao" onclick="tipoPop()" />
+					</p>
+
+					<p>Tamanho da Amostra:
+						<input  type="number" step="1" min="1" name="tAmostraIC" id="tAmostraIC" onchange="" />
+					</p>
+					<p id="tamPop">Tamanho da População:
+						<input type='number' step='1' min='0' name='tamPopIC' id='tamPopIC' disabled='disabled' />
+					</p>
+					<p>Média:
+						<input type="number" min="0" name="mediaIC" id="mediaIC" />
+					</p>
+					<p >Coeficiente de Confiança:
+						<input type="number" step="0.1" min="0" name="coefConfIC" id="coefConfIC" /> %				
+					</p>
+					<p >Variança:
+						<input type="number" step="0.1" min="0" name="variancafIC" id="variancafIC" />					
+					</p>
+					<input type="button" id="calcIC" value="Calcular" onclick="calcIntConfianca()" />
+				</form>
+              </div>
+              <hr class="my-0">
+              <div class="card-body small bg-faded">
+                <div class="media">
+                  <div class="media-body">
+                    <h6 class="mt-0 mb-1">Intevalo de Confiança:</h6>
+                    <p id="interConf"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer small text-muted"></div>
+        </div>	
+
+		<div class="card mb-3" >
+ 
+              <div class="card-body">
+                <h6 class="card-title mb-1">Distribuição Binomial</h6>
+               
+              </div>
+              <hr class="my-0">
+              <div class="card-body py-2 small">
+				<form>
+					<p>Tamanho da Amostra:
+						<input  type="number" step="1" min="1" name="tAmostra" id="tAmostra" onchange="mostrarEvento()" />
+					</p>
+					<p>Sucesso:
+						<input type="number" step="0.1" min="0" name="sucesso" id="sucesso" />
+						%
+					</p>
+					<p>Fracasso:
+						<input type="number" step="0.1" min="0" name="fracasso" id="fracasso" />
+						%
+					</p>
+					<p >Evento:
+						<div id="evento">
+							Digite a amostra primeiro para selecionar o evento.
+						</div>
+					</p>
+					<input type="button" id="calcDisBin" value="Calcular" onclick="calcBinomial()" />
+				</form>
+              </div>
+              <hr class="my-0">
+              <div class="card-body small bg-faded">
+                <div class="media">
+                  <div class="media-body">
+                    <h6 class="mt-0 mb-1">Probabilidade</h6>
+                    <p id="probabilidade"></p>
+                  </div>
+				  <div class="media-body">
+                    <h6 class="mt-0 mb-1">Média</h6>
+                    <p id="media"></p>
+                  </div>
+				  <div class="media-body">
+                    <h6 class="mt-0 mb-1">Desvio Padrão</h6>
+                    <p id="desvioPadrao"></p>
+                  </div>
+				  <div class="media-body">
+                    <h6 class="mt-0 mb-1">Coeficiente de Variânça</h6>
+                    <p id="coefVarianca"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer small text-muted"></div>
+			  
+			  <div class="card mb-3" >
+               <div class="card-body">
+                <h6 class="card-title mb-1">Correlação e Regressão</h6>
+               
+              </div>
+              <hr class="my-0">
+              <div class="card-body py-2 small">
+				<form>
+					<p>Variável independente(x):
+						<textarea id="independente"></textarea><br /><br />
+					</p>
+					<p>Variável Dependente(y):
+						<textarea id="dependente"></textarea><br /><br />
+					</p>
+					<input type="button" id="calcCorrel" value="Calcular" onclick="calcCorrelacao()" />
+				</form>
+              </div>
+              <hr class="my-0">
+              <div class="card-body small bg-faded">
+                <div class="media">
+                  <div class="media-body">
+                    <h6 class="mt-0 mb-1">Coeficiente de Correlação Linear:</h6>
+                    <p id="correLinear"></p>
+                  </div>
+				  <div class="media-body">
+                    <h6 class="mt-0 mb-1">Regressão:</h6>
+                    <p id="regressao"></p>
+                  </div>
+                </div>
+              </div>
+			  <canvas class="lineChart"></class>
+              <div class="card-footer small text-muted"></div>
+			</div>
+			
+        </div>
+			
+        
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright &copy; O Estatístico 2017</small>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	
+	<!-- JavaScript Arquvios Range Slider -->
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<script src="js/ion.rangeSlider.js"></script>
+	
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <!--<script src="vendor/datatables/jquery.dataTables.js"></script>-->
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/sb-admin.min.js"></script>
+	
+	<!--Arquivos Range Slider-->
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<script src="js/ion.rangeSlider.js"></script>
+	
+	<!--<script src="js-projeto/tabelaNormal.js"></script>-->
+	<script src="js-projeto/estIndutiva.js"></script>
+	
+  </body>
+</html>
